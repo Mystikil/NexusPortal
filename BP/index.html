@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --background: #f7f9fb;
+            --card-background: #ffffffcc;
+            --text-primary: #1f2933;
+            --text-secondary: #52606d;
+            --accent: #1f8ef1;
+            --accent-dark: #0b74d1;
+            --border: #d9e2ec;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(160deg, #ebf8ff 0%, #f7f9fb 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .app-container {
+            width: min(960px, 100%);
+            background: var(--card-background);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2.75rem 3rem;
+            box-shadow: 0 24px 48px rgba(31, 142, 241, 0.12);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.6vw, 2.8rem);
+            letter-spacing: -0.03em;
+        }
+
+        header p {
+            margin: 0.4rem 0 0;
+            color: var(--text-secondary);
+            max-width: 30ch;
+        }
+
+        form {
+            display: grid;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .input-row {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .input-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="number"],
+        textarea {
+            font: inherit;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.9);
+            color: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        input[type="number"] {
+            min-height: unset;
+        }
+
+        input[type="number"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(31, 142, 241, 0.15);
+        }
+
+        button {
+            justify-self: start;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 0.9rem 2.4rem;
+            font: inherit;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover,
+        button:focus-visible {
+            background: var(--accent-dark);
+            box-shadow: 0 18px 30px rgba(31, 142, 241, 0.24);
+            transform: translateY(-1px);
+        }
+
+        button:focus-visible {
+            outline: none;
+        }
+
+        .entries {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .entries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .entries-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .clear-button {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .clear-button:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(31, 142, 241, 0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border);
+        }
+
+        thead tr {
+            background: rgba(31, 142, 241, 0.08);
+            color: var(--text-secondary);
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 1.1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-secondary);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="app-container">
+        <header>
+            <div>
+                <h1>Blood Pressure Journal</h1>
+                <p>Track your readings, keep notes, and monitor your health journey. Entries are saved on this device.</p>
+            </div>
+        </header>
+
+        <form id="bpForm" aria-label="Blood pressure entry form">
+            <div class="input-row">
+                <label>
+                    Systolic
+                    <input type="number" id="systolic" name="systolic" inputmode="numeric" min="0" max="300" required placeholder="e.g. 120">
+                </label>
+                <label>
+                    Diastolic
+                    <input type="number" id="diastolic" name="diastolic" inputmode="numeric" min="0" max="200" required placeholder="e.g. 80">
+                </label>
+            </div>
+
+            <label>
+                Notes
+                <textarea id="notes" name="notes" placeholder="How are you feeling today? Any meds or symptoms?" rows="4"></textarea>
+            </label>
+
+            <button type="submit">Add Entry</button>
+        </form>
+
+        <section class="entries" aria-live="polite">
+            <div class="entries-header">
+                <h2>Saved Entries</h2>
+                <button type="button" class="clear-button" id="clearEntries" aria-label="Clear all entries">Clear all</button>
+            </div>
+            <div id="entriesTable"></div>
+        </section>
+
+        <footer>
+            Data is stored locally in your browser. Remember to export or copy your entries if you switch devices.
+        </footer>
+    </main>
+
+    <script>
+        const form = document.getElementById('bpForm');
+        const systolicInput = document.getElementById('systolic');
+        const diastolicInput = document.getElementById('diastolic');
+        const notesInput = document.getElementById('notes');
+        const entriesTable = document.getElementById('entriesTable');
+        const clearButton = document.getElementById('clearEntries');
+
+        const STORAGE_KEY = 'bp-journal-entries';
+
+        function loadEntries() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) {
+                return [];
+            }
+            try {
+                const parsed = JSON.parse(stored);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                console.error('Unable to parse stored entries', error);
+                return [];
+            }
+        }
+
+        function saveEntries(entries) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            const dateFormatter = new Intl.DateTimeFormat(undefined, {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+            return dateFormatter.format(date);
+        }
+
+        function renderEntries(entries) {
+            if (!entries.length) {
+                entriesTable.innerHTML = '<div class="empty-state">No entries yet. Add your first reading above.</div>';
+                return;
+            }
+
+            const rows = entries
+                .slice()
+                .reverse()
+                .map((entry) => `
+                    <tr>
+                        <td><strong>${entry.systolic}/${entry.diastolic} mmHg</strong></td>
+                        <td>${entry.notes ? entry.notes.replace(/\n/g, '<br>') : '<em>No notes</em>'}</td>
+                        <td>${formatDate(entry.timestamp)}</td>
+                    </tr>
+                `)
+                .join('');
+
+            entriesTable.innerHTML = `
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Reading</th>
+                                <th scope="col">Notes</th>
+                                <th scope="col">Recorded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const systolic = Number.parseInt(systolicInput.value, 10);
+            const diastolic = Number.parseInt(diastolicInput.value, 10);
+            const notes = notesInput.value.trim();
+
+            if (Number.isNaN(systolic) || Number.isNaN(diastolic)) {
+                alert('Please enter valid numbers for both systolic and diastolic values.');
+                return;
+            }
+
+            const entries = loadEntries();
+            entries.push({
+                systolic,
+                diastolic,
+                notes,
+                timestamp: Date.now()
+            });
+            saveEntries(entries);
+            renderEntries(entries);
+
+            form.reset();
+            systolicInput.focus();
+        }
+
+        function handleClear() {
+            if (!confirm('Are you sure you want to clear all saved entries?')) {
+                return;
+            }
+            localStorage.removeItem(STORAGE_KEY);
+            renderEntries([]);
+        }
+
+        form.addEventListener('submit', handleSubmit);
+        clearButton.addEventListener('click', handleClear);
+
+        renderEntries(loadEntries());
+    </script>
+</body>
+</html>
