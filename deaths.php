@@ -74,6 +74,7 @@ if ($deathsAvailable) {
 
 require __DIR__ . '/partials/header.php';
 ?>
+<!-- layout:content:start -->
 <section class="deaths">
     <header class="page-header">
         <h1>Recent Deaths</h1>
@@ -155,4 +156,5 @@ require __DIR__ . '/partials/header.php';
         <?php endif; ?>
     <?php endif; ?>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

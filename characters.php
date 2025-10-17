@@ -39,6 +39,7 @@ foreach ($towns as $town) {
 }
 require_once __DIR__ . '/partials/header.php';
 ?>
+<!-- layout:content:start -->
 <section class="character-management">
     <header class="page-header">
         <h1>Character Management</h1>
@@ -152,4 +153,5 @@ require_once __DIR__ . '/partials/header.php';
         </section>
     </div>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

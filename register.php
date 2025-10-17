@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 require __DIR__ . '/partials/header.php';
 ?>
+<!-- layout:content:start -->
 <section class="form-section">
     <div class="card">
         <h1>Initialize Your Command Deck</h1>
@@ -54,4 +55,5 @@ require __DIR__ . '/partials/header.php';
         <p class="meta">Already have an account? <a href="/N1/login.php">Sign in.</a></p>
     </div>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>
