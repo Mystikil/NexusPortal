@@ -86,14 +86,7 @@ python tools/apply_layout.py
 ```
 
 Add `--dry-run` to preview the changes or `--no-assets` to skip copying files
-from `layout/assets/` into the project’s [`assets/`](./assets/) directory. If
-you would like the template to refresh automatically while you tweak the HTML,
-run the helper with `--watch` and it will re-apply the layout whenever files in
-the workspace change:
-
-```bash
-python tools/apply_layout.py --watch
-```
+from `layout/assets/` into the project’s [`assets/`](./assets/) directory.
 
 ## Security Notes
 

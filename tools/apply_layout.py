@@ -9,9 +9,8 @@ from __future__ import annotations
 import argparse
 import shutil
 import sys
-import time
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_LAYOUT_DIR = REPO_ROOT / "layout"
@@ -221,78 +220,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help="Preview the changes without touching the filesystem",
     )
-    parser.add_argument(
-        "--watch",
-        action="store_true",
-        help="Keep running and automatically re-apply the layout when files change",
-    )
     return parser.parse_args(argv)
-
-
-def apply_layout(template_dir: Path, *, dry_run: bool, copy_assets_flag: bool) -> int:
-    changes = 0
-    try:
-        if apply_header(template_dir, dry_run=dry_run):
-            changes += 1
-        if apply_footer(template_dir, dry_run=dry_run):
-            changes += 1
-        changes += apply_pages(template_dir, dry_run=dry_run)
-    except LayoutError as exc:
-        print(exc, file=sys.stderr)
-        return -1
-
-    if copy_assets_flag:
-        changes += copy_assets(template_dir, dry_run=dry_run)
-
-    if changes:
-        print(f"Layout applied. {changes} item(s) processed.")
-    else:
-        print("Nothing to update. Did you provide header/footer/pages templates?")
-    return changes
-
-
-def snapshot_layout(template_dir: Path) -> Dict[str, Tuple[float, int]]:
-    state: Dict[str, Tuple[float, int]] = {}
-    for path in template_dir.rglob("*"):
-        if not path.is_file():
-            continue
-        stat = path.stat()
-        state[str(path.relative_to(template_dir))] = (stat.st_mtime, stat.st_size)
-    return state
-
-
-def watch_layout(
-    template_dir: Path,
-    *,
-    dry_run: bool,
-    copy_assets_flag: bool,
-    interval: float = 1.0,
-) -> int:
-    print("Watching for layout changes. Press Ctrl+C to stop.")
-    # Apply once on start so the latest version is picked up immediately.
-    result = apply_layout(template_dir, dry_run=dry_run, copy_assets_flag=copy_assets_flag)
-    if result == -1:
-        return 2
-    previous_state = snapshot_layout(template_dir)
-
-    try:
-        while True:
-            time.sleep(interval)
-            current_state = snapshot_layout(template_dir)
-            if current_state == previous_state:
-                continue
-            print("\nDetected changes in layout workspace. Reapplying...")
-            result = apply_layout(
-                template_dir,
-                dry_run=dry_run,
-                copy_assets_flag=copy_assets_flag,
-            )
-            if result == -1:
-                return 2
-            previous_state = current_state
-    except KeyboardInterrupt:
-        print("\nStopped watching layout changes.")
-        return 0
 
 
 def main(argv: list[str]) -> int:
@@ -303,18 +231,24 @@ def main(argv: list[str]) -> int:
         return 1
 
     print(f"Using template directory: {template_dir}")
-    copy_assets_flag = not args.no_assets
-
-    if args.watch:
-        return watch_layout(
-            template_dir,
-            dry_run=args.dry_run,
-            copy_assets_flag=copy_assets_flag,
-        )
-
-    result = apply_layout(template_dir, dry_run=args.dry_run, copy_assets_flag=copy_assets_flag)
-    if result == -1:
+    changes = 0
+    try:
+        if apply_header(template_dir, dry_run=args.dry_run):
+            changes += 1
+        if apply_footer(template_dir, dry_run=args.dry_run):
+            changes += 1
+        changes += apply_pages(template_dir, dry_run=args.dry_run)
+    except LayoutError as exc:
+        print(exc, file=sys.stderr)
         return 2
+
+    if not args.no_assets:
+        changes += copy_assets(template_dir, dry_run=args.dry_run)
+
+    if changes:
+        print(f"Layout applied. {changes} item(s) processed.")
+    else:
+        print("Nothing to update. Did you provide header/footer/pages templates?")
     return 0
 
 

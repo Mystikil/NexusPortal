@@ -1,8 +1,6 @@
 # Layout workspace
 
 Place your HTML template fragments here before running `python tools/apply_layout.py`.
-Pass `--watch` to keep the script running and automatically re-apply updates as
-you edit files inside this workspace.
 
 ```
 layout/
