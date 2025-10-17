@@ -135,6 +135,7 @@ if (!tableExists($db, 'guilds')) {
 
 require __DIR__ . '/partials/header.php';
 ?>
+<!-- layout:content:start -->
 <section class="guilds">
     <header class="page-header">
         <h1>Guild Directory</h1>
@@ -236,4 +237,5 @@ require __DIR__ . '/partials/header.php';
         </div>
     <?php endif; ?>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

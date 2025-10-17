@@ -9,6 +9,7 @@ $serverOnline = !empty($serverStatus['online']);
 $statusTitle = $serverOnline ? 'Game server is online' : 'Game server is offline';
 $statusTitle .= sprintf(' (%s:%s)', $serverStatus['host'], $serverStatus['port']);
 ?>
+<!-- layout:header:start -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,3 +58,4 @@ $statusTitle .= sprintf(' (%s:%s)', $serverStatus['host'], $serverStatus['port']
     </div>
 </header>
 <main>
+<!-- layout:header:end -->

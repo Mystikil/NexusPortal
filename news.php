@@ -17,6 +17,7 @@ $stmt->execute();
 $entries = $stmt->fetchAll();
 $totalPages = max(1, (int) ceil($total / $perPage));
 ?>
+<!-- layout:content:start -->
 <section class="news-feed">
     <header>
         <h1>Command Center Updates</h1>
@@ -43,4 +44,5 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         <?php endif; ?>
     <?php endif; ?>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>
