@@ -791,6 +791,22 @@ textarea:focus {
     border-radius: 16px;
 }
 
+.form-panel label {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.form-panel label span {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.form-panel input,
+.form-panel textarea,
+.form-panel select {
+    width: 100%;
+}
+
 .form-panel h2 {
     margin: 0;
     font-size: 1.2rem;
