@@ -11,6 +11,7 @@ $stmt = $db->prepare('SELECT * FROM players WHERE account_id = ? ORDER BY level 
 $stmt->execute([$user['id']]);
 $characters = $stmt->fetchAll();
 ?>
+<!-- layout:content:start -->
 <section class="dashboard">
     <aside class="profile">
         <h1><?= e($user['name']) ?></h1>
@@ -55,4 +56,5 @@ $characters = $stmt->fetchAll();
         <?php endif; ?>
     </section>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

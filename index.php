@@ -17,6 +17,7 @@ $playerCount = safeCount($db, 'SELECT COUNT(*) FROM players');
 $accountCount = safeCount($db, 'SELECT COUNT(*) FROM accounts');
 $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
 ?>
+<!-- layout:content:start -->
 <section class="hero">
     <div class="hero-content">
         <h1>Command the Next Evolution</h1>
@@ -82,4 +83,5 @@ $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
     <p>Secure your Nexus One account and unlock exclusive launch rewards, including the Aetherial Wyvern mount.</p>
     <a class="btn primary" href="/N1/register.php">Get Started</a>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

@@ -167,6 +167,7 @@ try {
 
 require __DIR__ . '/partials/header.php';
 ?>
+<!-- layout:content:start -->
 <section class="highscores">
     <header class="page-header">
         <h1>Highscores</h1>
@@ -234,4 +235,5 @@ require __DIR__ . '/partials/header.php';
         </div>
     <?php endif; ?>
 </section>
+<!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

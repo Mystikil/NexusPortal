@@ -50,6 +50,44 @@ All custom styling lives inside [`assets/css/style.css`](./assets/css/style.css)
 and JavaScript behaviour in [`assets/js/app.js`](./assets/js/app.js). Fonts are
 sourced from Google Fonts (`Orbitron` and `Rubik`).
 
+### Applying HTML templates automatically
+
+Drop your HTML theme inside the [`layout/`](./layout/) directory and run the
+[`tools/apply_layout.py`](./tools/apply_layout.py) helper to sync it with the
+live PHP pages.
+
+```
+layout/
+├── header.html
+├── footer.html
+└── pages/
+    ├── index.html
+    ├── news.html
+    └── ...
+```
+
+- `header.html` and `footer.html` should only contain the markup you want
+  between the `layout:header`/`layout:footer` markers already present in the
+  PHP partials. Optional placeholders include `{{ SITE_NAME }}` and
+  `{{ PAGE_TITLE }}` (page title), `{{ SERVER_STATUS }}` (status badge),
+  `{{ NAVIGATION }}` (dynamic menu), `{{ SITE_LINK }}` (logo link),
+  `{{ CURRENT_YEAR }}` and `{{ FOOTER_SCRIPTS }}`.
+- Place page-specific fragments inside `layout/pages/*.html`. Each filename must
+  match an existing PHP page (for example `index.html` -> `index.php`). The
+  script replaces the content between the `<!-- layout:content:start -->` and
+  `<!-- layout:content:end -->` markers that now wrap every public page.
+- Static paths can use `{{ BASE_PATH }}` (`/N1`) and `{{ ASSET_PATH }}`
+  (`/N1/assets`) for convenience.
+
+Apply the template with:
+
+```bash
+python tools/apply_layout.py
+```
+
+Add `--dry-run` to preview the changes or `--no-assets` to skip copying files
+from `layout/assets/` into the project’s [`assets/`](./assets/) directory.
+
 ## Security Notes
 
 - Passwords are stored using SHA-1 hashes to remain compatible with the live

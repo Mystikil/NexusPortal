@@ -1,3 +1,4 @@
+<!-- layout:footer:start -->
 </main>
 <footer class="site-footer">
     <div class="grid">
@@ -27,3 +28,4 @@
 <script src="/N1/assets/js/app.js"></script>
 </body>
 </html>
+<!-- layout:footer:end -->
