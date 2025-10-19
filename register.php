@@ -62,7 +62,7 @@ require __DIR__ . '/partials/header.php';
                 <button type="submit" class="btn primary full">Create Account</button>
             </div>
         </form>
-        <p class="meta">Already have an account? <a href="/N1/login.php">Sign in.</a></p>
+        <p class="meta">Already have an account? <a href="<?= e(siteUrl('login.php')) ?>">Sign in.</a></p>
     </div>
 </section>
 <!-- layout:content:end -->

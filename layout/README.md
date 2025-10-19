@@ -21,8 +21,8 @@ Supported placeholders:
 - `{{ SITE_LINK }}` — outputs the header logo link back to the homepage.
 - `{{ CURRENT_YEAR }}` — prints the current year (footer).
 - `{{ FOOTER_SCRIPTS }}` — inserts the default JavaScript include.
-- `{{ BASE_PATH }}` — resolves to `/N1`.
-- `{{ ASSET_PATH }}` — resolves to `/N1/assets`.
+- `{{ BASE_PATH }}` — outputs the configured site root via `siteUrl()`.
+- `{{ ASSET_PATH }}` — outputs the asset root via `assetUrl()`.
 
 Any placeholders that are left out will not be added automatically—you can
 always write raw PHP inside your template files if you need more control.

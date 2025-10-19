@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $password = $_POST['password'] ?? '';
     if (login($name, $password)) {
-        header('Location: /N1/dashboard.php');
+        header('Location: ' . siteUrl('dashboard.php'));
         exit;
     }
     $error = 'Invalid credentials. Please try again.';
@@ -32,7 +32,7 @@ require __DIR__ . '/partials/header.php';
             </label>
             <button type="submit" class="btn primary full">Log In</button>
         </form>
-        <p class="meta">Need an account? <a href="/N1/register.php">Create one now.</a></p>
+        <p class="meta">Need an account? <a href="<?= e(siteUrl('register.php')) ?>">Create one now.</a></p>
     </div>
 </section>
 <!-- layout:content:end -->

@@ -23,8 +23,8 @@ $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
         <h1>Command the Next Evolution</h1>
         <p>Launch into an interdimensional MMORPG with stunning visuals, seasonal raids, and a thriving economy. Your squad is waiting.</p>
         <div class="actions">
-            <a class="btn primary" href="/N1/register.php">Create Account</a>
-            <a class="btn secondary" href="/N1/news.php">Latest Intel</a>
+            <a class="btn primary" href="<?= e(siteUrl('register.php')) ?>">Create Account</a>
+            <a class="btn secondary" href="<?= e(siteUrl('news.php')) ?>">Latest Intel</a>
         </div>
     </div>
     <div class="hero-stats">
@@ -61,7 +61,7 @@ $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
 <section class="panel">
     <header>
         <h2>Latest Dispatches</h2>
-        <a href="/N1/news.php" class="link">View all</a>
+        <a href="<?= e(siteUrl('news.php')) ?>" class="link">View all</a>
     </header>
     <?php if (!$news): ?>
         <p class="empty">No news yet. Admins can deploy the first transmission from the dashboard.</p>
@@ -81,7 +81,7 @@ $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
 <section class="cta-band">
     <h2>Ready to Ascend?</h2>
     <p>Secure your Nexus One account and unlock exclusive launch rewards, including the Aetherial Wyvern mount.</p>
-    <a class="btn primary" href="/N1/register.php">Get Started</a>
+    <a class="btn primary" href="<?= e(siteUrl('register.php')) ?>">Get Started</a>
 </section>
 <!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>

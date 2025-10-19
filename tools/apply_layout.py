@@ -25,8 +25,8 @@ CONTENT_START = "<!-- layout:content:start -->"
 CONTENT_END = "<!-- layout:content:end -->"
 
 COMMON_PLACEHOLDERS: Dict[str, str] = {
-    "{{ BASE_PATH }}": "/N1",
-    "{{ ASSET_PATH }}": "/N1/assets",
+    "{{ BASE_PATH }}": "<?= e(siteUrl()) ?>",
+    "{{ ASSET_PATH }}": "<?= e(assetUrl('')) ?>",
 }
 
 HEADER_PLACEHOLDERS: Dict[str, str] = {
@@ -47,34 +47,34 @@ HEADER_PLACEHOLDERS: Dict[str, str] = {
         "    <?php\n"
         "    $menuSections = [\n"
         "        'Discover' => [\n"
-        "            ['label' => 'Home', 'href' => '/N1/index.php'],\n"
-        "            ['label' => 'News', 'href' => '/N1/news.php'],\n"
-        "            ['label' => 'Highscores', 'href' => '/N1/highscores.php'],\n"
+        "            ['label' => 'Home', 'href' => siteUrl()],\n"
+        "            ['label' => 'News', 'href' => siteUrl('news.php')],\n"
+        "            ['label' => 'Highscores', 'href' => siteUrl('highscores.php')],\n"
         "        ],\n"
         "        'Intel & Community' => [\n"
-        "            ['label' => 'Character Lookup', 'href' => '/N1/character.php'],\n"
-        "            ['label' => 'Guilds', 'href' => '/N1/guilds.php'],\n"
-        "            ['label' => 'Deaths', 'href' => '/N1/deaths.php'],\n"
+        "            ['label' => 'Character Lookup', 'href' => siteUrl('character.php')],\n"
+        "            ['label' => 'Guilds', 'href' => siteUrl('guilds.php')],\n"
+        "            ['label' => 'Deaths', 'href' => siteUrl('deaths.php')],\n"
         "        ],\n"
         "    ];\n"
         "\n"
         "    if (isLoggedIn()) {\n"
         "        $accountLinks = [\n"
-        "            ['label' => 'Account Dashboard', 'href' => '/N1/dashboard.php'],\n"
-        "            ['label' => 'My Characters', 'href' => '/N1/characters.php'],\n"
+        "            ['label' => 'Account Dashboard', 'href' => siteUrl('dashboard.php')],\n"
+        "            ['label' => 'My Characters', 'href' => siteUrl('characters.php')],\n"
         "        ];\n"
         "\n"
         "        if (isAdmin()) {\n"
-        "            $accountLinks[] = ['label' => 'Admin Control', 'href' => '/N1/admin/index.php'];\n"
+        "            $accountLinks[] = ['label' => 'Admin Control', 'href' => siteUrl('admin/index.php')];\n"
         "        }\n"
         "\n"
-        "        $accountLinks[] = ['label' => 'Logout', 'href' => '/N1/logout.php'];\n"
+        "        $accountLinks[] = ['label' => 'Logout', 'href' => siteUrl('logout.php')];\n"
         "\n"
         "        $menuSections['Command Console'] = $accountLinks;\n"
         "    } else {\n"
         "        $menuSections['Join the Nexus'] = [\n"
-        "            ['label' => 'Create Account', 'href' => '/N1/register.php', 'class' => 'cta'],\n"
-        "            ['label' => 'Login', 'href' => '/N1/login.php'],\n"
+        "            ['label' => 'Create Account', 'href' => siteUrl('register.php'), 'class' => 'cta'],\n"
+        "            ['label' => 'Login', 'href' => siteUrl('login.php')],\n"
         "        ];\n"
         "    }\n"
         "    ?>\n"
@@ -86,9 +86,14 @@ HEADER_PLACEHOLDERS: Dict[str, str] = {
         "                    <?php foreach ($links as $link): ?>\n"
         "                        <?php\n"
         "                        $linkClass = $link['class'] ?? '';\n"
+        "                        $linkPath = parse_url($link['href'], PHP_URL_PATH) ?: '';\n"
+        "                        $isActive = rtrim($currentPath, '/') === rtrim($linkPath, '/');\n"
+        "                        if ($isActive) {\n"
+        "                            $linkClass = trim($linkClass . ' active');\n"
+        "                        }\n"
         "                        ?>\n"
         "                        <li>\n"
-        "                            <a href=\"<?= e($link['href']) ?>\"<?php if ($linkClass !== ''): ?> class=\"<?= e($linkClass) ?>\"<?php endif; ?>><?= e($link['label']) ?></a>\n"
+        "                            <a href=\"<?= e($link['href']) ?>\"<?php if ($linkClass !== ''): ?> class=\"<?= e($linkClass) ?>\"<?php endif; ?><?php if ($isActive): ?> aria-current=\"page\"<?php endif; ?>><?= e($link['label']) ?></a>\n"
         "                        </li>\n"
         "                    <?php endforeach; ?>\n"
         "                </ul>\n"
@@ -97,12 +102,12 @@ HEADER_PLACEHOLDERS: Dict[str, str] = {
         "    </ul>\n"
         "</nav>"
     ),
-    "{{ SITE_LINK }}": "<a href=\"/N1/index.php\"><?= e($siteName) ?></a>",
+    "{{ SITE_LINK }}": "<a href=\"<?= e(siteUrl()) ?>\"><?= e($siteName) ?></a>",
 }
 
 FOOTER_PLACEHOLDERS: Dict[str, str] = {
     "{{ CURRENT_YEAR }}": "<?= date('Y') ?>",
-    "{{ FOOTER_SCRIPTS }}": "<script src=\"/N1/assets/js/app.js\"></script>",
+    "{{ FOOTER_SCRIPTS }}": "<script src=\"<?= e(assetUrl('js/app.js')) ?>\"></script>",
 }
 
 

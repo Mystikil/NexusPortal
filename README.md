@@ -29,18 +29,20 @@ while integrating with the official game schema.
    `DEVNEXUS_DB_*` environment variables. Optional server heartbeat settings are
    available through `DEVNEXUS_GAME_HOST`, `DEVNEXUS_GAME_PORT`, and
    `DEVNEXUS_GAME_TIMEOUT` for the status indicator in the site header.
-2. Deploy the `N1` directory to your PHP-enabled web server.
+2. Deploy the project to your PHP-enabled web server. Update the
+   `site.base_url` value in [`config.php`](./config.php) if the portal is not
+   served from the domain root.
 3. Ensure the existing Devnexus schema is installed (see the SQL bundle provided
    with your server). The portal will automatically create the `site_news`
    table when needed.
-4. Visit `/N1/register.php` to create a new account or `/N1/login.php` to sign
-   in.
+4. Visit `<base_url>/register.php` to create a new account or
+   `<base_url>/login.php` to sign in (for example `https://example.com/login.php`).
 
 ## Administrator Access
 
 - Promote an account by setting the `type` column in the `accounts` table to
-  `3` (or higher). Admin accounts unlock the `/N1/admin/index.php` control
-  center.
+  `3` (or higher). Admin accounts unlock the admin control center at
+  `<base_url>/admin/index.php`.
 - Admins can push updates to the community feed, review statistics, and purge
   news posts.
 
@@ -76,8 +78,9 @@ layout/
   match an existing PHP page (for example `index.html` -> `index.php`). The
   script replaces the content between the `<!-- layout:content:start -->` and
   `<!-- layout:content:end -->` markers that now wrap every public page.
-- Static paths can use `{{ BASE_PATH }}` (`/N1`) and `{{ ASSET_PATH }}`
-  (`/N1/assets`) for convenience.
+- Static paths can use `{{ BASE_PATH }}` and `{{ ASSET_PATH }}` to insert the
+  configured root paths exposed by the new `siteUrl()` and `assetUrl()` helper
+  functions.
 
 Apply the template with:
 

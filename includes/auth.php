@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/helpers.php';
 
 function getDb(): PDO
 {
@@ -41,7 +42,7 @@ function isAdmin(): bool
 function requireLogin(): void
 {
     if (!isLoggedIn()) {
-        header('Location: login.php');
+        header('Location: ' . siteUrl('login.php'));
         exit;
     }
 }
@@ -49,7 +50,7 @@ function requireLogin(): void
 function requireAdmin(): void
 {
     if (!isAdmin()) {
-        header('Location: /N1/login.php');
+        header('Location: ' . siteUrl('login.php'));
         exit;
     }
 }
