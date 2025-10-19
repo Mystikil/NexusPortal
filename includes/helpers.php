@@ -21,3 +21,34 @@ function formatRelativeTime(int $timestamp): string
     $days = (int) floor($diff / 86400);
     return $days . ' day' . ($days === 1 ? '' : 's') . ' ago';
 }
+
+function siteUrl(string $path = ''): string
+{
+    static $base;
+
+    if ($base === null) {
+        $settings = require __DIR__ . '/../config.php';
+        $configured = $settings['site']['base_url'] ?? '/';
+        if ($configured === '') {
+            $configured = '/';
+        }
+        $base = rtrim($configured, '/');
+    }
+
+    $path = ltrim($path, '/');
+
+    if ($base === '' || $base === null) {
+        return '/' . $path;
+    }
+
+    if ($path === '') {
+        return $base;
+    }
+
+    return $base . '/' . $path;
+}
+
+function assetUrl(string $path): string
+{
+    return siteUrl('assets/' . ltrim($path, '/'));
+}

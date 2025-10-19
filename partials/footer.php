@@ -9,13 +9,13 @@
         <div>
             <h3>Quick Links</h3>
             <ul>
-                <li><a href="/N1/register.php">Create Account</a></li>
-                <li><a href="/N1/login.php">Account Login</a></li>
-                <li><a href="/N1/news.php">Community News</a></li>
-                <li><a href="/N1/highscores.php">Highscores</a></li>
-                <li><a href="/N1/character.php">Character Lookup</a></li>
-                <li><a href="/N1/guilds.php">Guild Directory</a></li>
-                <li><a href="/N1/deaths.php">Recent Deaths</a></li>
+                <li><a href="<?= e(siteUrl('register.php')) ?>">Create Account</a></li>
+                <li><a href="<?= e(siteUrl('login.php')) ?>">Account Login</a></li>
+                <li><a href="<?= e(siteUrl('news.php')) ?>">Community News</a></li>
+                <li><a href="<?= e(siteUrl('highscores.php')) ?>">Highscores</a></li>
+                <li><a href="<?= e(siteUrl('character.php')) ?>">Character Lookup</a></li>
+                <li><a href="<?= e(siteUrl('guilds.php')) ?>">Guild Directory</a></li>
+                <li><a href="<?= e(siteUrl('deaths.php')) ?>">Recent Deaths</a></li>
             </ul>
         </div>
         <div>
@@ -25,7 +25,7 @@
     </div>
     <p class="legal">&copy; <?= date('Y') ?> Nexus One. Crafted for Adventurers.</p>
 </footer>
-<script src="/N1/assets/js/app.js"></script>
+<script src="<?= e(assetUrl('js/app.js')) ?>"></script>
 </body>
 </html>
 <!-- layout:footer:end -->
