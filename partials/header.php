@@ -35,24 +35,56 @@ $statusTitle .= sprintf(' (%s:%s)', $serverStatus['host'], $serverStatus['port']
             <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
-            <ul id="primary-menu">
-                <li><a href="/N1/index.php">Home</a></li>
-                <li><a href="/N1/news.php">News</a></li>
-                <li><a href="/N1/highscores.php">Highscores</a></li>
-                <li><a href="/N1/character.php">Character Lookup</a></li>
-                <li><a href="/N1/guilds.php">Guilds</a></li>
-                <li><a href="/N1/deaths.php">Deaths</a></li>
-                <?php if (isLoggedIn()): ?>
-                    <li><a href="/N1/dashboard.php">Account</a></li>
-                    <li><a href="/N1/characters.php">Characters</a></li>
-                    <?php if (isAdmin()): ?>
-                        <li><a href="/N1/admin/index.php">Admin</a></li>
-                    <?php endif; ?>
-                    <li><a href="/N1/logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="/N1/register.php" class="cta">Create Account</a></li>
-                    <li><a href="/N1/login.php">Login</a></li>
-                <?php endif; ?>
+            <?php
+            $menuSections = [
+                'Discover' => [
+                    ['label' => 'Home', 'href' => '/N1/index.php'],
+                    ['label' => 'News', 'href' => '/N1/news.php'],
+                    ['label' => 'Highscores', 'href' => '/N1/highscores.php'],
+                ],
+                'Intel & Community' => [
+                    ['label' => 'Character Lookup', 'href' => '/N1/character.php'],
+                    ['label' => 'Guilds', 'href' => '/N1/guilds.php'],
+                    ['label' => 'Deaths', 'href' => '/N1/deaths.php'],
+                ],
+            ];
+
+            if (isLoggedIn()) {
+                $accountLinks = [
+                    ['label' => 'Account Dashboard', 'href' => '/N1/dashboard.php'],
+                    ['label' => 'My Characters', 'href' => '/N1/characters.php'],
+                ];
+
+                if (isAdmin()) {
+                    $accountLinks[] = ['label' => 'Admin Control', 'href' => '/N1/admin/index.php'];
+                }
+
+                $accountLinks[] = ['label' => 'Logout', 'href' => '/N1/logout.php'];
+
+                $menuSections['Command Console'] = $accountLinks;
+            } else {
+                $menuSections['Join the Nexus'] = [
+                    ['label' => 'Create Account', 'href' => '/N1/register.php', 'class' => 'cta'],
+                    ['label' => 'Login', 'href' => '/N1/login.php'],
+                ];
+            }
+            ?>
+            <ul id="primary-menu" class="menu-sections">
+                <?php foreach ($menuSections as $sectionTitle => $links): ?>
+                    <li class="menu-section">
+                        <span class="section-title"><?= e($sectionTitle) ?></span>
+                        <ul class="menu-links">
+                            <?php foreach ($links as $link): ?>
+                                <?php
+                                $linkClass = $link['class'] ?? '';
+                                ?>
+                                <li>
+                                    <a href="<?= e($link['href']) ?>"<?php if ($linkClass !== ''): ?> class="<?= e($linkClass) ?>"<?php endif; ?>><?= e($link['label']) ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </nav>
     </div>

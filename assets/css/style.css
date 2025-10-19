@@ -105,30 +105,60 @@ main {
 }
 
 
-.main-nav ul {
-    display: flex;
-    gap: 1rem;
+.main-nav .menu-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
     list-style: none;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
-.main-nav a {
-    padding: 0.5rem 0.75rem;
+.main-nav .menu-section {
+    background: rgba(12, 17, 37, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+    box-shadow: var(--shadow);
+}
+
+.main-nav .section-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.main-nav .menu-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.main-nav .menu-links a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.55rem 0.75rem;
     border-radius: 999px;
     transition: background 0.3s ease, color 0.3s ease;
     font-weight: 500;
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.main-nav a:hover,
-.main-nav .cta {
-    background: rgba(124, 92, 255, 0.18);
+.main-nav .menu-links a:hover {
+    background: rgba(124, 92, 255, 0.25);
+    color: var(--primary-accent);
 }
 
-.main-nav .cta {
+.main-nav .menu-links .cta {
     border: 1px solid rgba(124, 92, 255, 0.65);
+    background: rgba(124, 92, 255, 0.18);
+    justify-content: center;
 }
 
 .nav-toggle {
@@ -204,10 +234,10 @@ main {
         cursor: pointer;
     }
 
-    .js .main-nav ul {
+    .js .main-nav .menu-sections {
         display: none;
-        flex-direction: column;
-        gap: 0.5rem;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
         width: 100%;
         margin-top: 0.75rem;
         padding: 0.75rem;
@@ -215,16 +245,29 @@ main {
         border: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(12, 17, 37, 0.92);
         box-shadow: var(--shadow);
-        align-items: stretch;
     }
 
-    .js .main-nav ul.open {
-        display: flex;
+    .js .main-nav .menu-sections.open {
+        display: grid;
     }
 
-    .main-nav a {
+    .main-nav .menu-section {
+        padding: 0.75rem 0.85rem;
+        border-radius: 12px;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    .main-nav .section-title {
+        font-size: 0.7rem;
+    }
+
+    .main-nav .menu-links a {
         width: 100%;
         text-align: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.04);
     }
 }
 
