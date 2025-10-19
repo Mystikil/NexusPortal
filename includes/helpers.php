@@ -52,3 +52,31 @@ function assetUrl(string $path): string
 {
     return siteUrl('assets/' . ltrim($path, '/'));
 }
+
+function truncateText(string $text, int $length, string $ellipsis = '...'): string
+{
+    if ($length <= 0) {
+        return '';
+    }
+
+    if (function_exists('mb_strlen')) {
+        $encoding = 'UTF-8';
+        if (mb_strlen($text, $encoding) <= $length) {
+            return $text;
+        }
+
+        $sliceLength = max(0, $length - mb_strlen($ellipsis, $encoding));
+        $truncated = mb_substr($text, 0, $sliceLength, $encoding);
+
+        return rtrim($truncated) . $ellipsis;
+    }
+
+    if (strlen($text) <= $length) {
+        return $text;
+    }
+
+    $sliceLength = max(0, $length - strlen($ellipsis));
+    $truncated = substr($text, 0, $sliceLength);
+
+    return rtrim($truncated) . $ellipsis;
+}

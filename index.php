@@ -71,7 +71,7 @@ $onlineCount = safeCount($db, 'SELECT COUNT(*) FROM players_online');
                 <article>
                     <h3><?= e($entry['title']) ?></h3>
                     <p class="meta">By <?= e($entry['author_name']) ?> &bull; <?= e(formatRelativeTime((int)$entry['created_at'])) ?></p>
-                    <p><?= nl2br(e(mb_strimwidth($entry['body'], 0, 220, '...'))) ?></p>
+                    <p><?= nl2br(e(truncateText($entry['body'], 220))) ?></p>
                 </article>
             <?php endforeach; ?>
         </div>
