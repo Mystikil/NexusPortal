@@ -55,6 +55,54 @@ $characters = $stmt->fetchAll();
             </div>
         <?php endif; ?>
     </section>
+    <section class="account-actions">
+        <header>
+            <h2>Account Actions</h2>
+            <p>Handle subscription options and manage your characters without leaving the portal.</p>
+        </header>
+        <div class="action-grid">
+            <article>
+                <h3>Change Password</h3>
+                <p>Update your account password regularly to keep your credentials secure.</p>
+                <a class="btn secondary" href="#">Update Password</a>
+            </article>
+            <article>
+                <h3>Add Subscription</h3>
+                <p>Unlock premium perks by activating a new subscription for your account.</p>
+                <a class="btn secondary" href="#">Activate Subscription</a>
+            </article>
+            <article>
+                <h3>Cancel Subscription</h3>
+                <p>Need a break? Manage and cancel your active subscription here.</p>
+                <a class="btn secondary" href="#">Manage Subscription</a>
+            </article>
+            <article>
+                <h3>Donate</h3>
+                <p>Support the server and help fund new features with a one-time donation.</p>
+                <a class="btn secondary" href="#">Make a Donation</a>
+            </article>
+            <article>
+                <h3>Character Creation</h3>
+                <p>Create a brand-new hero to join your adventures across the realm.</p>
+                <a class="btn secondary" href="#">Create Character</a>
+            </article>
+            <article>
+                <h3>Character Deletion</h3>
+                <p>Retire characters you no longer play. Deleted characters cannot be recovered.</p>
+                <a class="btn secondary" href="#">Delete Character</a>
+            </article>
+            <article>
+                <h3>Character Transfer</h3>
+                <p>Move a character to another account or world while keeping their progress.</p>
+                <a class="btn secondary" href="#">Transfer Character</a>
+            </article>
+            <article>
+                <h3>Character Rename</h3>
+                <p>Give your hero a fresh identity with a new name and renewed fame.</p>
+                <a class="btn secondary" href="#">Rename Character</a>
+            </article>
+        </div>
+    </section>
 </section>
 <!-- layout:content:end -->
 <?php require __DIR__ . '/partials/footer.php'; ?>
