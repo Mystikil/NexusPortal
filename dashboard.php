@@ -58,82 +58,48 @@ $characters = $stmt->fetchAll();
     <section class="account-actions">
         <header>
             <h2>Account Actions</h2>
-            <p>Find common account workflows grouped by what you want to accomplish.</p>
+            <p>Handle subscription options and manage your characters without leaving the portal.</p>
         </header>
-        <div class="action-groups">
-            <article class="action-group">
-                <h3>Account Security</h3>
-                <p class="group-summary">Protect your credentials and keep your login details up to date.</p>
-                <ul class="action-list">
-                    <li>
-                        <div class="action-card">
-                            <h4>Change Password</h4>
-                            <p>Regularly refresh your password to prevent unwanted access.</p>
-                            <a class="btn secondary" href="#">Update Password</a>
-                        </div>
-                    </li>
-                </ul>
+        <div class="action-grid">
+            <article>
+                <h3>Change Password</h3>
+                <p>Update your account password regularly to keep your credentials secure.</p>
+                <a class="btn secondary" href="#">Update Password</a>
             </article>
-            <article class="action-group">
-                <h3>Membership &amp; Support</h3>
-                <p class="group-summary">Manage premium time or support the server directly.</p>
-                <ul class="action-list">
-                    <li>
-                        <div class="action-card">
-                            <h4>Add Subscription</h4>
-                            <p>Enable premium status and unlock exclusive account benefits.</p>
-                            <a class="btn secondary" href="#">Activate Subscription</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="action-card">
-                            <h4>Cancel Subscription</h4>
-                            <p>Adjust your membership if you no longer need premium time.</p>
-                            <a class="btn secondary" href="#">Manage Subscription</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="action-card">
-                            <h4>Donate</h4>
-                            <p>Chip in with a one-time donation to keep development rolling.</p>
-                            <a class="btn secondary" href="#">Make a Donation</a>
-                        </div>
-                    </li>
-                </ul>
+            <article>
+                <h3>Add Subscription</h3>
+                <p>Unlock premium perks by activating a new subscription for your account.</p>
+                <a class="btn secondary" href="#">Activate Subscription</a>
             </article>
-            <article class="action-group">
-                <h3>Character Management</h3>
-                <p class="group-summary">Create, maintain, or move the characters tied to your account.</p>
-                <ul class="action-list">
-                    <li>
-                        <div class="action-card">
-                            <h4>Character Creation</h4>
-                            <p>Start a new adventure with a freshly forged hero.</p>
-                            <a class="btn secondary" href="#">Create Character</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="action-card">
-                            <h4>Character Deletion</h4>
-                            <p>Retire a hero you no longer need. Deletions are permanent.</p>
-                            <a class="btn secondary" href="#">Delete Character</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="action-card">
-                            <h4>Character Transfer</h4>
-                            <p>Move a character between accounts or worlds while preserving progress.</p>
-                            <a class="btn secondary" href="#">Transfer Character</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="action-card">
-                            <h4>Character Rename</h4>
-                            <p>Give an existing hero a new identity and start fresh.</p>
-                            <a class="btn secondary" href="#">Rename Character</a>
-                        </div>
-                    </li>
-                </ul>
+            <article>
+                <h3>Cancel Subscription</h3>
+                <p>Need a break? Manage and cancel your active subscription here.</p>
+                <a class="btn secondary" href="#">Manage Subscription</a>
+            </article>
+            <article>
+                <h3>Donate</h3>
+                <p>Support the server and help fund new features with a one-time donation.</p>
+                <a class="btn secondary" href="#">Make a Donation</a>
+            </article>
+            <article>
+                <h3>Character Creation</h3>
+                <p>Create a brand-new hero to join your adventures across the realm.</p>
+                <a class="btn secondary" href="#">Create Character</a>
+            </article>
+            <article>
+                <h3>Character Deletion</h3>
+                <p>Retire characters you no longer play. Deleted characters cannot be recovered.</p>
+                <a class="btn secondary" href="#">Delete Character</a>
+            </article>
+            <article>
+                <h3>Character Transfer</h3>
+                <p>Move a character to another account or world while keeping their progress.</p>
+                <a class="btn secondary" href="#">Transfer Character</a>
+            </article>
+            <article>
+                <h3>Character Rename</h3>
+                <p>Give your hero a fresh identity with a new name and renewed fame.</p>
+                <a class="btn secondary" href="#">Rename Character</a>
             </article>
         </div>
     </section>
