@@ -743,17 +743,6 @@ select {
     color: var(--text-muted);
 }
 
-.stack {
-    display: grid;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-
-.stack label {
-    display: grid;
-    gap: 0.4rem;
-}
-
 input,
 textarea {
     background: rgba(10, 15, 35, 0.9);
@@ -774,6 +763,63 @@ textarea:focus {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.stack {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.stack label {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.form-layout {
+    display: grid;
+    gap: 1.75rem;
+    margin-top: 2rem;
+}
+
+.form-panel {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(12, 17, 37, 0.65);
+    border: 1px solid rgba(124, 92, 255, 0.25);
+    border-radius: 16px;
+}
+
+.form-panel h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.section-note {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+}
+
+.form-actions .btn {
+    box-shadow: none;
+}
+
+@media (min-width: 720px) {
+    .form-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .alert {
