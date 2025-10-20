@@ -1,0 +1,90 @@
+{
+  "brand": { "logoText": "Devnexus", "href": "/" },
+  "primary": [
+    {
+      "label": "Play",
+      "panelWidth": "container",
+      "groups": [
+        {
+          "title": "Getting Started",
+          "items": [
+            { "label": "Download", "href": "/downloads", "desc": "Client & tools", "icon": "download", "badge": "New" },
+            { "label": "How to Connect", "href": "/how-to-connect", "desc": "Setup guide", "icon": "plug" }
+          ]
+        },
+        {
+          "title": "Account",
+          "items": [
+            { "label": "Create Account", "href": "/account/register", "icon": "user-plus" },
+            { "label": "My Account", "href": "/account", "icon": "user" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "World",
+      "panelWidth": "full",
+      "groups": [
+        {
+          "title": "Bestiary",
+          "items": [
+            { "label": "Monsters", "href": "/bestiary", "desc": "Stats & loot", "icon": "dragon" },
+            { "label": "Bosses", "href": "/bestiary/bosses", "icon": "crown" }
+          ]
+        },
+        {
+          "title": "Maps & Instances",
+          "items": [
+            { "label": "Overworld", "href": "/world-map", "icon": "map" },
+            { "label": "Instances", "href": "/instances", "badge": "Updated", "icon": "layers" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Systems",
+      "panelWidth": "container",
+      "groups": [
+        {
+          "title": "Progression",
+          "items": [
+            { "label": "Forging", "href": "/systems/forging", "icon": "hammer" },
+            { "label": "Rarity", "href": "/systems/rarity", "icon": "sparkles" }
+          ]
+        },
+        {
+          "title": "Economy",
+          "items": [
+            { "label": "Market", "href": "/market", "icon": "coins" },
+            { "label": "Trade Rules", "href": "/rules/trade", "icon": "scale" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Community",
+      "panelWidth": "container",
+      "groups": [
+        {
+          "title": "Social",
+          "items": [
+            { "label": "Discord", "href": "https://discord.gg/...", "icon": "discord" },
+            { "label": "Forums", "href": "/forums", "icon": "message-circle" }
+          ]
+        },
+        {
+          "title": "Support",
+          "items": [
+            { "label": "Help Center", "href": "/support", "icon": "life-buoy" },
+            { "label": "Report Issue", "href": "/support/report", "icon": "alert-triangle" }
+          ]
+        }
+      ]
+    }
+  ],
+  "utility": [
+    { "type": "search", "placeholder": "Search…" },
+    { "type": "link", "label": "Login", "href": "/login", "icon": "log-in" },
+    { "type": "theme-toggle" }
+  ]
+}
