@@ -50,6 +50,70 @@ All custom styling lives inside [`assets/css/style.css`](./assets/css/style.css)
 and JavaScript behaviour in [`assets/js/app.js`](./assets/js/app.js). Fonts are
 sourced from Google Fonts (`Orbitron` and `Rubik`).
 
+## Responsive Navigation Component
+
+The repository now ships with a reusable navigation system that can be dropped
+into any PHP/XAMPP deployment.
+
+### Installation
+
+1. Copy the new assets into your project root (paths are relative to this
+   repository):
+   - [`includes/nav.php`](./includes/nav.php)
+   - [`public/css/nav.css`](./public/css/nav.css)
+   - [`public/js/nav.js`](./public/js/nav.js)
+   - [`public/data/menu.json`](./public/data/menu.json)
+2. Ensure the CSS and JavaScript are referenced once on pages that render the
+   navigation include:
+
+   ```php
+   <link rel="stylesheet" href="/public/css/nav.css">
+   <script src="/public/js/nav.js" defer></script>
+   ```
+
+3. Drop the include where you want the navigation to appear (usually inside
+   your global header template):
+
+   ```php
+   <?php include __DIR__ . '/includes/nav.php'; ?>
+   ```
+
+### Menu data
+
+All menu content is sourced from [`public/data/menu.json`](./public/data/menu.json).
+Update this file to change labels, URLs, badges, or icons. Every primary item
+supports `panelWidth` (`"container"` or `"full"`), multiple `groups`, and
+optional `desc` or `badge` fields per link. Utility items support the `search`
+widget, external `link` buttons, and the `theme-toggle` control.
+
+Icon names map directly to the inline SVG sprite in `includes/nav.php`.
+
+### Accessibility & keyboard support
+
+- `<nav role="navigation" aria-label="Primary">` wraps the experience.
+- Trigger buttons set `aria-expanded` and `aria-controls` and announce their
+  panels.
+- Megamenu panels expose `role="menu"` with `role="menuitem"` links.
+- Desktop keyboard shortcuts:
+  - `Tab`/`Shift+Tab` moves through triggers and, when open, panel links.
+  - `←`/`→` moves between primary triggers.
+  - `↑`/`↓` cycles through links inside an open panel.
+  - `Esc` closes the current panel and returns focus.
+- The mobile drawer traps focus, closes with `Esc`, and restores focus to the
+  hamburger toggle.
+- Search overlay and drawer buttons mirror the same escape-and-restore
+  behaviour.
+
+### Testing checklist
+
+- Desktop hover/focus opens a single panel at a time.
+- `Esc` closes the panel and restores focus to its trigger.
+- Keyboard navigation obeys the arrow key map above.
+- Mobile drawer slides in, traps focus, supports accordion expansion, and
+  closes with `Esc` while restoring focus.
+- Screen readers announce `expanded`/`collapsed` states on buttons.
+- Works in current Chrome, Firefox, Edge, and Safari.
+
 ### Applying HTML templates automatically
 
 Drop your HTML theme inside the [`layout/`](./layout/) directory and run the
