@@ -36,22 +36,54 @@ $statusTitle .= sprintf(' (%s:%s)', $serverStatus['host'], $serverStatus['port']
                 <span></span><span></span><span></span>
             </button>
             <ul id="primary-menu">
-                <li><a href="/N1/index.php">Home</a></li>
-                <li><a href="/N1/news.php">News</a></li>
-                <li><a href="/N1/highscores.php">Highscores</a></li>
-                <li><a href="/N1/character.php">Character Lookup</a></li>
-                <li><a href="/N1/guilds.php">Guilds</a></li>
-                <li><a href="/N1/deaths.php">Deaths</a></li>
+                <li class="menu-item"><a href="/N1/index.php">Home</a></li>
+                <li class="menu-item has-dropdown">
+                    <button class="dropdown-toggle" type="button" aria-expanded="false">
+                        Game World
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/N1/news.php">News &amp; Updates</a></li>
+                        <li><a href="/N1/highscores.php">Highscores</a></li>
+                        <li><a href="/N1/deaths.php">Recent Deaths</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-dropdown">
+                    <button class="dropdown-toggle" type="button" aria-expanded="false">
+                        Community
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/N1/guilds.php">Guild Directory</a></li>
+                        <li><a href="/N1/character.php">Character Lookup</a></li>
+                    </ul>
+                </li>
                 <?php if (isLoggedIn()): ?>
-                    <li><a href="/N1/dashboard.php">Account</a></li>
-                    <li><a href="/N1/characters.php">Characters</a></li>
-                    <?php if (isAdmin()): ?>
-                        <li><a href="/N1/admin/index.php">Admin</a></li>
-                    <?php endif; ?>
-                    <li><a href="/N1/logout.php">Logout</a></li>
+                    <li class="menu-item has-dropdown account-menu">
+                        <button class="dropdown-toggle" type="button" aria-expanded="false">
+                            Account
+                            <span class="chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/N1/dashboard.php">Dashboard</a></li>
+                            <li><a href="/N1/characters.php">Characters</a></li>
+                            <?php if (isAdmin()): ?>
+                                <li><a href="/N1/admin/index.php">Admin Console</a></li>
+                            <?php endif; ?>
+                            <li><a href="/N1/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
                 <?php else: ?>
-                    <li><a href="/N1/register.php" class="cta">Create Account</a></li>
-                    <li><a href="/N1/login.php">Login</a></li>
+                    <li class="menu-item has-dropdown account-menu">
+                        <button class="dropdown-toggle" type="button" aria-expanded="false">
+                            Account
+                            <span class="chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/N1/register.php" class="cta">Create Account</a></li>
+                            <li><a href="/N1/login.php">Login</a></li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
             </ul>
         </nav>
