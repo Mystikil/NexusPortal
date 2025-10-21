@@ -1,0 +1,30 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Dawnrise surge illustration</title>
+  <desc id="desc">Abstract sunrise with glowing shards and foliage silhouettes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0f4f" />
+      <stop offset="60%" stop-color="#2f2c7a" />
+      <stop offset="100%" stop-color="#4cb9f2" />
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.3" r="0.6">
+      <stop offset="0%" stop-color="#ffe9a3" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ff7bc2" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)" />
+  <circle cx="620" cy="170" r="230" fill="url(#sun)" />
+  <g fill="#6ef7f2" fill-opacity="0.55">
+    <path d="M200 520 Q310 360 420 520 Z" />
+    <path d="M460 520 Q550 340 640 520 Z" opacity="0.7" />
+    <path d="M680 520 Q790 330 900 520 Z" opacity="0.6" />
+  </g>
+  <g fill="#f7f0c8" fill-opacity="0.5">
+    <polygon points="160,160 220,40 300,200" />
+    <polygon points="420,120 500,10 560,180" opacity="0.6" />
+    <polygon points="760,200 820,60 920,220" opacity="0.5" />
+  </g>
+  <g fill="#071626" fill-opacity="0.45">
+    <path d="M0 520 Q200 440 360 520 T720 520 T1200 520 V600 H0 Z" />
+  </g>
+</svg>

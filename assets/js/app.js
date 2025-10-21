@@ -71,4 +71,86 @@ document.addEventListener('DOMContentLoaded', () => {
             menu.classList.remove('open');
         }
     });
+
+    const carousels = Array.from(document.querySelectorAll('[data-carousel]'));
+    carousels.forEach((carousel) => {
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        if (!slides.length) {
+            return;
+        }
+
+        const indicators = Array.from(carousel.querySelectorAll('[data-slide-to]'));
+        const prevButton = carousel.querySelector('.carousel-button.prev');
+        const nextButton = carousel.querySelector('.carousel-button.next');
+        let current = slides.findIndex((slide) => slide.classList.contains('is-active'));
+        if (current < 0) {
+            current = 0;
+            slides[0].classList.add('is-active');
+            if (indicators[0]) {
+                indicators[0].classList.add('active');
+            }
+        }
+
+        let autoTimer;
+        const setSlide = (index) => {
+            const total = slides.length;
+            if (!total) {
+                return;
+            }
+            const nextIndex = ((index % total) + total) % total;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('is-active', i === nextIndex);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === nextIndex);
+            });
+            current = nextIndex;
+        };
+
+        const stopAuto = () => {
+            if (autoTimer) {
+                window.clearInterval(autoTimer);
+                autoTimer = undefined;
+            }
+        };
+
+        const startAuto = () => {
+            stopAuto();
+            if (slides.length <= 1) {
+                return;
+            }
+            autoTimer = window.setInterval(() => {
+                setSlide(current + 1);
+            }, 8000);
+        };
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                setSlide(current - 1);
+                startAuto();
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                setSlide(current + 1);
+                startAuto();
+            });
+        }
+
+        indicators.forEach((indicator) => {
+            indicator.addEventListener('click', () => {
+                const target = Number(indicator.getAttribute('data-slide-to'));
+                if (Number.isFinite(target)) {
+                    setSlide(target);
+                    startAuto();
+                }
+            });
+        });
+
+        carousel.addEventListener('mouseenter', stopAuto);
+        carousel.addEventListener('mouseleave', startAuto);
+
+        startAuto();
+    });
 });

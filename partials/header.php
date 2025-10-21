@@ -46,6 +46,7 @@ $statusTitle .= sprintf(' (%s:%s)', $serverStatus['host'], $serverStatus['port']
                         <li><a href="/N1/news.php">News &amp; Updates</a></li>
                         <li><a href="/N1/highscores.php">Highscores</a></li>
                         <li><a href="/N1/deaths.php">Recent Deaths</a></li>
+                        <li><a href="/N1/living-world.php">Living World Atlas</a></li>
                     </ul>
                 </li>
                 <li class="menu-item has-dropdown">

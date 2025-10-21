@@ -1,0 +1,30 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Zenith pressure illustration</title>
+  <desc id="desc">Abstract midday sky with crystalline shards and energy waves.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c102c" />
+      <stop offset="70%" stop-color="#1e2b69" />
+      <stop offset="100%" stop-color="#4cf2f2" />
+    </linearGradient>
+    <radialGradient id="burst" cx="0.5" cy="0.5" r="0.65">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7" />
+      <stop offset="60%" stop-color="#78ffda" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0c102c" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)" />
+  <circle cx="580" cy="320" r="280" fill="url(#burst)" />
+  <g fill="#52ffe2" fill-opacity="0.7">
+    <polygon points="220,500 360,140 480,500" />
+    <polygon points="520,520 650,180 760,520" opacity="0.7" />
+    <polygon points="820,520 930,210 1040,520" opacity="0.5" />
+  </g>
+  <g fill="none" stroke="#e7ecff" stroke-width="6" stroke-opacity="0.35">
+    <path d="M0 420 C240 360 380 480 600 420 C820 360 960 480 1200 420" />
+    <path d="M0 480 C260 420 360 540 600 480 C840 420 940 540 1200 480" />
+  </g>
+  <g fill="#040512" fill-opacity="0.55">
+    <path d="M0 520 H1200 V600 H0 Z" />
+  </g>
+</svg>
